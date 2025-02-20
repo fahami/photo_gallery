@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:photo_gallery/controller/controller.dart';
 import 'package:photo_gallery/models/models.dart';
+import 'package:photo_gallery/widgets/widgets.dart';
 
 class MainScreen extends GetView<MainScreenController> {
   const MainScreen({super.key});
@@ -11,20 +12,12 @@ class MainScreen extends GetView<MainScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Photo Gallery'),
-      ),
+      appBar: AppBar(title: const Text('Photo Gallery')),
       body: PagedGridView(
         pagingController: controller.pagingController,
         builderDelegate: PagedChildBuilderDelegate<Photo>(
           itemBuilder: (context, photo, index) {
-            return InkWell(
-              onTap: () => controller.onPhotoTap(photo),
-              child: ExtendedImage.network(
-                photo.urls.thumb,
-                fit: BoxFit.cover,
-              ),
-            );
+            return ImageCard(photo, onTap: () => controller.onPhotoTap(photo));
           },
         ),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

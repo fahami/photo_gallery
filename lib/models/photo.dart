@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:photo_gallery/models/exif.dart';
 import 'package:photo_gallery/models/location.dart';
 import 'package:photo_gallery/models/urls.dart';
+import 'package:photo_gallery/models/user.dart';
 
 part 'photo.g.dart';
 
@@ -14,6 +15,7 @@ class Photo {
     required this.width,
     required this.height,
     required this.urls,
+    required this.user,
     this.description,
     this.location,
     this.exif,
@@ -30,6 +32,7 @@ class Photo {
   final Location? location;
   final Exif? exif;
   final Urls urls;
+  final User user;
 
   Map<String, dynamic> toJson() => _$PhotoToJson(this);
 }

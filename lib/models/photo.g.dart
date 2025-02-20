@@ -13,6 +13,7 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
   width: (json['width'] as num).toInt(),
   height: (json['height'] as num).toInt(),
   urls: Urls.fromJson(json['urls'] as Map<String, dynamic>),
+  user: User.fromJson(json['user'] as Map<String, dynamic>),
   description: json['description'] as String?,
   location:
       json['location'] == null
@@ -34,4 +35,5 @@ Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
   'location': instance.location?.toJson(),
   'exif': instance.exif?.toJson(),
   'urls': instance.urls.toJson(),
+  'user': instance.user.toJson(),
 };

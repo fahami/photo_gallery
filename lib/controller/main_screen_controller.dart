@@ -36,4 +36,10 @@ class MainScreenController extends GetxController {
       pagingController.error = error;
     }
   }
+
+  @override
+  void onClose() {
+    pagingController.dispose();
+    super.onClose();
+  }
 }
