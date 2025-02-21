@@ -10,7 +10,8 @@ class ProfileImage {
     required this.large,
   });
 
-  factory ProfileImage.fromJson(Map<String, dynamic> json) => _$ProfileImageFromJson(json);
+  factory ProfileImage.fromJson(Map<String, dynamic> json) =>
+      _$ProfileImageFromJson(json);
 
   final String small;
   final String medium;

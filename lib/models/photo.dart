@@ -16,6 +16,8 @@ class Photo {
     required this.height,
     required this.urls,
     required this.user,
+    required this.likes,
+    required this.blurHash,
     this.description,
     this.location,
     this.exif,
@@ -24,6 +26,7 @@ class Photo {
   factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
 
   final String id;
+  final String blurHash;
   final DateTime createdAt;
   final DateTime updatedAt;
   final int width;
@@ -33,6 +36,7 @@ class Photo {
   final Exif? exif;
   final Urls urls;
   final User user;
+  final int likes;
 
   Map<String, dynamic> toJson() => _$PhotoToJson(this);
 }

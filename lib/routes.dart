@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photo_gallery/controller/controller.dart';
-import 'package:photo_gallery/pages/main_screen.dart';
+import 'package:photo_gallery/pages/pages.dart';
 
 class RouteConstant {
   RouteConstant._();
@@ -19,6 +19,13 @@ class Routes {
       page: MainScreen.new,
       binding: BindingsBuilder.put(
         () => MainScreenController(repository: Get.find()),
+      ),
+    ),
+    GetPage(
+      name: RouteConstant.photoDetail,
+      page: DetailScreen.new,
+      binding: BindingsBuilder.put(
+        () => DetailScreenController(repository: Get.find()),
       ),
     ),
   ];

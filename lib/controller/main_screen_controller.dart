@@ -19,7 +19,9 @@ class MainScreenController extends GetxController {
     super.onInit();
   }
 
-  void onPhotoTap(Photo photo) {}
+  void onPhotoTap(Photo photo) {
+    Get.toNamed('/photo_detail', arguments: {'photo': photo});
+  }
 
   Future<void> fetchPhotos(int pageKey) async {
     try {

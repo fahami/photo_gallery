@@ -1,6 +1,9 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:octo_image/octo_image.dart';
 import 'package:photo_gallery/models/models.dart';
+import 'package:photo_gallery/utils/blur_hash.dart';
+import 'package:photo_gallery/widgets/image_author.dart';
 
 class ImageCard extends StatelessWidget {
   const ImageCard(this.photo, {super.key, this.onTap});
@@ -11,11 +14,18 @@ class ImageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Stack(
         fit: StackFit.expand,
         children: [
-          ExtendedImage.network(photo.urls.small, fit: BoxFit.cover),
+          Hero(
+            tag: photo.id,
+            child: OctoImage(
+              image: ExtendedNetworkImageProvider(photo.urls.small),
+              placeholderBuilder: blurHashPlaceholderBuilder(photo.blurHash),
+              fit: BoxFit.cover,
+            ),
+          ),
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
@@ -28,26 +38,7 @@ class ImageCard extends StatelessWidget {
                   end: Alignment.topCenter,
                 ),
               ),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 16,
-                    backgroundImage: ExtendedNetworkImageProvider(
-                      photo.user.profileImage.medium,
-                      cache: true,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Flexible(
-                    child: Text(
-                      photo.user.name,
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
+              child: ImageAuthor(photo.user, isDark: true),
             ),
           ),
         ],
