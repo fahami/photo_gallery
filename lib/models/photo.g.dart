@@ -14,6 +14,8 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
   height: (json['height'] as num).toInt(),
   urls: Urls.fromJson(json['urls'] as Map<String, dynamic>),
   user: User.fromJson(json['user'] as Map<String, dynamic>),
+  likes: (json['likes'] as num).toInt(),
+  blurHash: json['blur_hash'] as String,
   description: json['description'] as String?,
   location:
       json['location'] == null
@@ -27,6 +29,7 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
 
 Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
   'id': instance.id,
+  'blur_hash': instance.blurHash,
   'created_at': instance.createdAt.toIso8601String(),
   'updated_at': instance.updatedAt.toIso8601String(),
   'width': instance.width,
@@ -36,4 +39,5 @@ Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
   'exif': instance.exif?.toJson(),
   'urls': instance.urls.toJson(),
   'user': instance.user.toJson(),
+  'likes': instance.likes,
 };

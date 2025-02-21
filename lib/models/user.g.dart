@@ -12,10 +12,12 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
   profileImage: ProfileImage.fromJson(
     json['profile_image'] as Map<String, dynamic>,
   ),
+  username: json['username'] as String,
 );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
   'id': instance.id,
   'name': instance.name,
+  'username': instance.username,
   'profile_image': instance.profileImage.toJson(),
 };

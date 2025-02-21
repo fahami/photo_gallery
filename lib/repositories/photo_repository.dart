@@ -24,7 +24,10 @@ class PhotoRepositoryImpl implements PhotoRepository {
 
   @override
   Future<List<Photo>> fetchPhotos({required int page}) async {
-    final result = await client.get('/photos', queryParameters: {'page': page, 'per_page': defaultPageSize});
+    final result = await client.get(
+      '/photos',
+      queryParameters: {'page': page, 'per_page': defaultPageSize},
+    );
     final json = result.data as List;
     final photos = List<Map<String, dynamic>>.from(json).map(Photo.fromJson);
 
