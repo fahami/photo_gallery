@@ -13,6 +13,8 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
     json['profile_image'] as Map<String, dynamic>,
   ),
   username: json['username'] as String,
+  social: Social.fromJson(json['social'] as Map<String, dynamic>),
+  bio: json['bio'] as String?,
 );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -20,4 +22,6 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
   'name': instance.name,
   'username': instance.username,
   'profile_image': instance.profileImage.toJson(),
+  'social': instance.social.toJson(),
+  'bio': instance.bio,
 };

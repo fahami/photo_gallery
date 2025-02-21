@@ -6,6 +6,8 @@ abstract class PhotoRepository {
   Future<List<Photo>> fetchPhotos({required int page});
 
   Future<Photo> fetchPhoto(String id);
+
+  Future<List<Photo>> searchPhotos({required String query});
 }
 
 class PhotoRepositoryImpl implements PhotoRepository {
@@ -29,6 +31,18 @@ class PhotoRepositoryImpl implements PhotoRepository {
       queryParameters: {'page': page, 'per_page': defaultPageSize},
     );
     final json = result.data as List;
+    final photos = List<Map<String, dynamic>>.from(json).map(Photo.fromJson);
+
+    return photos.toList();
+  }
+
+  @override
+  Future<List<Photo>> searchPhotos({required String query}) async {
+    final result = await client.get(
+      '/search/photos',
+      queryParameters: {'query': query, 'per_page': defaultPageSize},
+    );
+    final json = result.data['results'] as List;
     final photos = List<Map<String, dynamic>>.from(json).map(Photo.fromJson);
 
     return photos.toList();
