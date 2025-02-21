@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:photo_gallery/models/profile_image.dart';
+import 'package:photo_gallery/models/models.dart';
 
 part 'user.g.dart';
 
@@ -10,6 +10,8 @@ class User {
     required this.name,
     required this.profileImage,
     required this.username,
+    required this.social,
+    this.bio,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -18,6 +20,8 @@ class User {
   final String name;
   final String username;
   final ProfileImage profileImage;
+  final Social social;
+  final String? bio;
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }
